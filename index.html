@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="ko"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><title>Hyunwoo Jung — Portfolio</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&amp;family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>
+@layer base {
+  html, body { margin: 0; padding: 0; }
+  body { overscroll-behavior: none; }
+  main > :first-child { margin-top: 0 !important; }
+  main > :last-child { margin-bottom: 0 !important; }
+}
+::-webkit-scrollbar { display: none; }
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+
+#cursor-pill {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.65);
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(8px);
+}
+#cursor-pill.active {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+#scroll-progress {
+  transform-origin: 0% 50%;
+  transform: scaleX(0);
+}
+
+.discipline-card {
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+.discipline-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 221, 185, 0);
+  transition: border-color 0.4s ease;
+  pointer-events: none;
+}
+.discipline-card:hover::after {
+  border-color: rgba(255, 221, 185, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  #cursor-pill {
+    display: none !important;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-container-lowest": "#ffffff", "on-background": "#1a1c19", "surface-bright": "#fafaf4", "on-error": "#ffffff", "error-container": "#ffdad6", "outline-variant": "#c4c7c7", "secondary-container": "#fed6ab", "surface-tint": "#5f5e5e", "tertiary-fixed-dim": "#c6c7c2", "tertiary-container": "#1a1c19", "on-surface-variant": "#444748", "primary-fixed": "#e5e2e1", "on-surface": "#1a1c19", "primary-fixed-dim": "#c8c6c5", "surface-container-low": "#f4f4ef", "on-error-container": "#93000a", "on-secondary": "#ffffff", "on-tertiary": "#ffffff", "surface-container-high": "#e8e8e3", "secondary-fixed": "#ffddb9", "on-primary-fixed": "#1c1b1b", "surface-container": "#eeeee9", "on-primary": "#ffffff", "inverse-on-surface": "#f1f1ec", "on-tertiary-fixed-variant": "#464744", "tertiary-fixed": "#e3e3de", "on-tertiary-fixed": "#1a1c19", "surface": "#fafaf4", "inverse-primary": "#c8c6c5", "outline": "#747878", "on-secondary-container": "#795b39", "surface-variant": "#e3e3de", "error": "#ba1a1a", "secondary": "#765937", "surface-dim": "#dadad5", "surface-container-highest": "#e3e3de", "tertiary": "#000000", "primary": "#000000", "secondary-fixed-dim": "#e6c096", "background": "#fafaf4", "inverse-surface": "#2f312e", "on-secondary-fixed-variant": "#5c4222", "primary-container": "#1c1b1b", "on-primary-container": "#858383", "on-primary-fixed-variant": "#474646", "on-tertiary-container": "#838480" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-md": "1.5rem", "space-sm": "0.75rem", "gutter": "1.5rem", "gutter-mobile": "1rem", "space-xl": "6rem", "space-xs": "0.375rem", "margin-mobile": "1.25rem", "space-lg": "3rem", "margin": "4rem" }, "fontFamily": { "display-mobile": [ "Bodoni Moda" ], "label-sm": [ "Hanken Grotesk" ], "body-sm": [ "Hanken Grotesk" ], "body-md": [ "Hanken Grotesk" ], "headline-sm": [ "Bodoni Moda" ], "headline-lg": [ "Bodoni Moda" ], "display": [ "Bodoni Moda" ], "body-lg": [ "Hanken Grotesk" ], "label-md": [ "Hanken Grotesk" ], "headline-lg-mobile": [ "Bodoni Moda" ], "label-lg": [ "Hanken Grotesk" ], "headline-md": [ "Bodoni Moda" ] }, "fontSize": { "display-mobile": [ "3rem", { "lineHeight": "3.25rem", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "label-sm": [ "0.625rem", { "lineHeight": "0.75rem", "letterSpacing": "0.2em", "fontWeight": "500" } ], "body-sm": [ "0.8125rem", { "lineHeight": "1.375rem", "letterSpacing": "0.02em", "fontWeight": "400" } ], "body-md": [ "0.9375rem", { "lineHeight": "1.625rem", "letterSpacing": "0.015em", "fontWeight": "400" } ], "headline-sm": [ "1.5rem", { "lineHeight": "1.875rem", "letterSpacing": "0em", "fontWeight": "500" } ], "headline-lg": [ "3.5rem", { "lineHeight": "3.75rem", "letterSpacing": "-0.015em", "fontWeight": "400" } ], "display": [ "5rem", { "lineHeight": "5.25rem", "letterSpacing": "-0.02em", "fontWeight": "400" } ], "body-lg": [ "1.125rem", { "lineHeight": "1.875rem", "letterSpacing": "0.01em", "fontWeight": "400" } ], "label-md": [ "0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.18em", "fontWeight": "600" } ], "headline-lg-mobile": [ "2.25rem", { "lineHeight": "2.5rem", "letterSpacing": "0em", "fontWeight": "400" } ], "label-lg": [ "0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.15em", "fontWeight": "600" } ], "headline-md": [ "2.25rem", { "lineHeight": "2.625rem", "letterSpacing": "-0.01em", "fontWeight": "400" } ] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased min-h-screen flex flex-col justify-between selection:bg-secondary-container selection:text-on-secondary-container">
+<div aria-hidden="true" class="fixed top-0 left-0 w-full h-[2px] bg-outline-variant/20 z-[60] pointer-events-none">
+<div class="h-full bg-secondary transition-transform duration-75 ease-out" id="scroll-progress"></div>
+</div>
+<div aria-hidden="true" class="px-3.5 py-1.5 bg-primary/95 text-on-primary font-label-sm text-label-sm uppercase tracking-[0.2em] shadow-xl border border-secondary-fixed/40" id="cursor-pill">
+<span class="inline-flex items-center gap-1.5" id="cursor-pill-text">View Project <span class="material-symbols-outlined text-[14px]">arrow_outward</span></span>
+</div>
+<header class="fixed top-0 left-0 w-full z-50 bg-surface/90 backdrop-blur-md border-b border-outline-variant/30 transition-all duration-300" id="site-header"><div class="h-20 w-full px-margin-mobile md:px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-on-primary font-headline-sm text-[13px]">HJ</div><a class="flex flex-col group" data-path="home" href="#"><span class="font-headline-sm text-headline-sm uppercase tracking-widest text-primary leading-none group-hover:text-secondary transition-colors">Hyunwoo Jung</span><span class="font-label-sm text-label-sm tracking-[0.25em] text-on-surface-variant uppercase mt-1">Designer &amp; Architect</span></a></div><nav class="hidden md:flex items-center gap-8 lg:gap-10" data-active-classes="text-primary border-b border-primary pb-1"><a aria-current="page" class="font-label-lg uppercase tracking-widest transition-all duration-200 text-primary border-b border-primary pb-1" data-path="works" href="#featured-works">Works</a><a class="font-label-lg text-label-lg uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-200 hover:-translate-y-0.5" data-path="philosophy" href="#philosophy-section">Philosophy</a><a class="font-label-lg text-label-lg uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-200 hover:-translate-y-0.5" data-path="studio" href="#disciplines-section">Skills</a><a class="font-label-lg text-label-lg uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-200 hover:-translate-y-0.5" data-path="journal" href="#journal-section">Journal</a><a class="font-label-lg text-label-lg uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-200 hover:-translate-y-0.5" data-path="contact" href="#inquiry-section">Contact</a></nav><div class="flex items-center gap-space-md"><a class="hidden sm:inline-block border border-primary px-5 py-2.5 font-label-md text-label-md uppercase tracking-widest text-primary hover:bg-primary hover:text-on-primary transition-all duration-300 hover:shadow-sm" data-path="inquire-project" href="#inquiry-section">Get in Touch</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center cursor-pointer hover:bg-secondary transition-colors"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-background flex-1"><div class="flex flex-col w-full">
+<section class="relative w-full px-margin-mobile md:px-margin pb-space-xl">
+<div class="pt-6 md:pt-12 mb-8 flex flex-col md:flex-row md:items-end justify-between gap-6 reveal-on-scroll">
+<div class="max-w-4xl">
+<div class="flex items-center gap-3 mb-4">
+<span class="inline-block w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<p class="font-label-sm text-label-sm uppercase tracking-[0.25em] text-secondary">Selected Works, 2020—2025</p>
+</div>
+<h1 class="font-display text-headline-lg-mobile md:text-display text-primary uppercase leading-[0.9] tracking-tight">
+          Silence in Structure,<br/>
+<span class="font-display italic font-light lowercase text-on-surface-variant">poetry in</span> Space.
+        </h1>
+</div>
+<div class="flex flex-col md:items-end text-left md:text-right">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-on-surface-variant">Independent Studio</span>
+<p class="font-body-md text-body-md text-primary font-medium tracking-wide mt-1">Seoul, South Korea</p>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-[0.18em] mt-2">N° 37.5665° N, 126.9780° E</span>
+</div>
+</div>
+<div class="relative w-full h-[737px] min-h-[520px] max-h-[820px] overflow-hidden bg-surface-container-high group reveal-on-scroll delay-200" data-hover-label="Inspect Project 04">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-105" data-alt="Minimalist brutalist concrete pavilion with monumental board-formed concrete walls, pure geometric glass openings, and an ultra-still reflecting pool mirror surface. Shot during golden hour with warm rake light cutting sharp razor shadows across raw volcanic stone flooring. Museum aesthetic, serene, silent, high resolution architectural photography." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD-iEZ-FjvKx9DKGiEK1E75p-4GFhQYqYC5HsVt4rMZQOusth0tbeX1qqbVAlNIapMDnoRhv-SqQ3v1xZKdN0VOKz3Yzf_TIhQyEQ1U-XcimVcrzW2HFHdYFZODxtI39zHv6sk7FycGpcbl2pzf_xCJyLDGg6XdZYtxue_SzPa9jAcdSBw-0Od8oDg8HPbD2uEQgX5keCszUadW47QkkBrbVgMg9Jtz49gHJ50arHrkT1FfvZp5x1peHg')">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/70 via-primary/10 to-transparent pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 right-0 p-6 md:p-10 flex flex-col md:flex-row items-start md:items-end justify-between gap-6 text-on-primary">
+<div class="space-y-1">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.25em] text-secondary-fixed">Project 04</span>
+<p class="font-headline-sm text-headline-sm text-on-primary">The Floating Sanctuary — Lake Lucerne</p>
+<p class="font-body-sm text-body-sm text-primary-fixed opacity-80 max-w-md">Cast-in-place low-carbon concrete cantilever resting over alpine limestone and glacial meltwater.</p>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-fixed text-[18px]">wb_sunny</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary-fixed">Solar Axis 182°</span>
+</div>
+<a class="px-6 py-3 bg-on-primary text-primary font-label-md text-label-md uppercase tracking-widest hover:bg-secondary hover:text-on-secondary transition-all duration-300 hover:shadow-lg inline-flex items-center gap-2 group/btn" href="#featured-works">
+<span>Explore Archive</span>
+<span class="material-symbols-outlined text-[16px] transition-transform duration-200 group-hover/btn:translate-x-1">arrow_downward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<section class="w-full bg-surface-container-low px-margin-mobile md:px-margin py-space-xl" id="philosophy-section">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-gutter items-start">
+<div class="md:col-span-3 flex flex-col items-start reveal-on-scroll">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.25em] text-secondary">01 / Ethos</span>
+<h2 class="font-headline-sm text-headline-sm text-primary uppercase tracking-tight mt-3">The Principle of Gravitas</h2>
+<div class="mt-6 w-12 h-[1px] bg-outline-variant"></div>
+</div>
+<div class="md:col-span-9 space-y-8">
+<p class="font-headline-md text-headline-md text-primary font-light leading-relaxed reveal-on-scroll delay-100">
+          “I craft volumes that endure beyond contemporary fleeting trends. Through material honesty and mathematical proportion, I transform raw matter into serene, meditative spatial experiences.”
+        </p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-6">
+<p class="font-body-md text-body-md text-on-surface-variant reveal-on-scroll delay-100">
+            Architecture should not shout; it must resonate through density, shade, and tectonic truth. My practice is an ongoing interrogation of permanence, extracting poetic light from massive structural anchors.
+          </p>
+<p class="font-body-md text-body-md text-on-surface-variant reveal-on-scroll delay-200">
+            From seismic terrains in East Asia to quiet coastal towns, my work bridges local memory with progressive environmental engineering.
+          </p>
+<p class="font-body-md text-body-md text-on-surface-variant reveal-on-scroll delay-300">
+            Every boundary is deliberate. Walls act as instruments calibrating temperature, natural breeze paths, and the acoustics of contemplative silence.
+          </p>
+</div>
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-6 pt-10">
+<div class="p-6 bg-surface-container-lowest transition-all duration-300 hover:-translate-y-1 hover:shadow-md reveal-on-scroll group/metric">
+<span class="font-display text-headline-lg text-primary block leading-none metric-counter" data-suffix="" data-target="9">9</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary mt-3 block group-hover/metric:text-primary transition-colors">Awards &amp; Nominations</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1 block">Regional design honors</span>
+</div>
+<div class="p-6 bg-surface-container-lowest transition-all duration-300 hover:-translate-y-1 hover:shadow-md reveal-on-scroll delay-100 group/metric">
+<span class="font-display text-headline-lg text-primary block leading-none metric-counter" data-suffix="+" data-target="24">24+</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary mt-3 block group-hover/metric:text-primary transition-colors">Built Environments</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1 block">Across South Korea &amp; Japan</span>
+</div>
+<div class="p-6 bg-surface-container-lowest transition-all duration-300 hover:-translate-y-1 hover:shadow-md reveal-on-scroll delay-200 group/metric">
+<span class="font-display text-headline-lg text-primary block leading-none metric-counter" data-suffix="" data-target="7">7</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary mt-3 block group-hover/metric:text-primary transition-colors">Years of Practice</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1 block">Founded 2018 in Seoul</span>
+</div>
+<div class="p-6 bg-surface-container-lowest transition-all duration-300 hover:-translate-y-1 hover:shadow-md reveal-on-scroll delay-300 group/metric">
+<span class="font-display text-headline-lg text-primary block leading-none metric-counter" data-decimals="2" data-suffix="" data-target="0.00">0.00</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary mt-3 block group-hover/metric:text-primary transition-colors">Compromise Metric</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1 block">Uncompromising tectonic rigor</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="w-full px-margin-mobile md:px-margin py-space-xl" id="featured-works">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 reveal-on-scroll">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.25em] text-secondary">02 / Selected Works</span>
+<h2 class="font-headline-lg text-headline-lg text-primary uppercase tracking-tight mt-2">Monographs in Form</h2>
+</div>
+<div class="flex items-center gap-4 mt-6 md:mt-0">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Filter Index:</span>
+<button class="px-4 py-1.5 bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-widest transition-all duration-200 hover:bg-secondary">All</button>
+<button class="px-4 py-1.5 bg-surface-container text-on-surface font-label-sm text-label-sm uppercase tracking-widest hover:bg-secondary-container transition-colors">Residential</button>
+<button class="px-4 py-1.5 bg-surface-container text-on-surface font-label-sm text-label-sm uppercase tracking-widest hover:bg-secondary-container transition-colors">Cultural</button>
+<button class="px-4 py-1.5 bg-surface-container text-on-surface font-label-sm text-label-sm uppercase tracking-widest hover:bg-secondary-container transition-colors">Sacred</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-y-8 md:gap-x-gutter items-center mb-24 group cursor-pointer reveal-on-scroll" data-hover-label="View Project 01">
+<div class="md:col-span-8 overflow-hidden bg-surface-container-high">
+<div class="w-full h-[580px] bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105" data-alt="Villa Brutal in Jeju South Korea, heavy dark volcanic basalt stone architecture seamlessly intersecting rough board-formed charcoal concrete." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAVRKzwKj8T_W5xa9cvPzDd-2PiEvEsh5U4HvgHsuXKnZnoVq-eMOZuUcOFcvvA_scUeYVanch7JTGre4Dac0eOypkaMgtI5pWGDzIz3lvtr_PZUe28kOz-_IxXZxDLeKYsnKp2qkOhWcoGK-gPeb3WwfPX3nm17cS5p3BiuD5R0fZhcIvPa_qXhRuB82g1MGRrIIFaOnCfPX-KVXsqEKQ3RmIkEpTVE4ywlvlbH3OjlkWZuw8UzPApvg')">
+</div>
+</div>
+<div class="md:col-span-4 md:pl-6 space-y-5">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.25em] text-secondary">Project 01 — 2024</span>
+<span class="font-label-md text-label-md px-3 py-1 bg-surface-container-high text-primary uppercase transition-colors group-hover:bg-secondary-container">Residential</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary tracking-tight group-hover:text-secondary transition-colors duration-300">
+          Villa Brutal
+        </h3>
+<p class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Jeju Island, South Korea</p>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Carved directly into black volcanic basalt. Board-formed grey concrete fins shelter inner courtyards from fierce coastal typhoons while capturing oceanic horizon light.
+        </p>
+<div class="pt-4 space-y-2">
+<div class="flex justify-between py-1.5 text-body-sm text-on-surface-variant bg-surface-container-low px-3 transition-colors group-hover:bg-surface-container">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Area</span>
+<span class="font-body-sm text-body-sm font-medium text-primary">1,480 m²</span>
+</div>
+<div class="flex justify-between py-1.5 text-body-sm text-on-surface-variant bg-surface-container-low px-3 transition-colors group-hover:bg-surface-container">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Substrate</span>
+<span class="font-body-sm text-body-sm font-medium text-primary">Basalt &amp; Raw Concrete</span>
+</div>
+<div class="flex justify-between py-1.5 text-body-sm text-on-surface-variant bg-surface-container-low px-3 transition-colors group-hover:bg-surface-container">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Climate</span>
+<span class="font-body-sm text-body-sm font-medium text-primary">Maritime Hyper-Oceanic</span>
+</div>
+</div>
+<div class="pt-2">
+<span class="inline-flex items-center gap-2 font-label-md text-label-md uppercase tracking-widest text-primary group-hover:text-secondary transition-colors duration-200">
+            View Full Case Study <span class="material-symbols-outlined text-[16px] transition-transform duration-300 ease-out group-hover:translate-x-1.5">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-y-16 md:gap-x-gutter mb-24">
+<div class="md:col-span-6 space-y-6 group cursor-pointer reveal-on-scroll" data-hover-label="View Project 02">
+<div class="relative overflow-hidden bg-surface-container-high h-[480px]">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105" data-alt="Kyoto Pavilion in Japan featuring rich charred cedar Shou Sugi Ban vertical slats, minimalist reflecting black stone water courtyard." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCoRdXNmdXg9DV5sdkkydjplCoAZ_0yy2F3yw1Cisy-GZ8MZSM7pQQa55WdR1dMaTG16tyOPLP_SL5k4hSxof11zF1WrogpcHyCuhTBq8DE4TgZOZcL2qY45R3CyqaJQ5yf7028FYsNeXt-gFQcwya8gDgpgiZvBpfyeZdKsWn0myc3A5I20EPQ7t78iRPmMOMrUAdL4f1F4warSdvmAya20W-kbeT2tgKk-8_-_SToJ6uwyq3L7TrsVw')">
+</div>
+<div class="absolute top-4 right-4 bg-primary px-3 py-1 text-on-primary font-label-sm text-label-sm uppercase tracking-widest">
+            Pavilion / Cultural
+          </div>
+</div>
+<div class="space-y-2">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.25em] text-secondary">Project 02 — 2023</span>
+<h3 class="font-headline-sm text-headline-sm text-primary tracking-tight group-hover:text-secondary transition-colors duration-300">
+            Kyoto Pavilion
+          </h3>
+<p class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Higashiyama, Kyoto, Japan</p>
+<p class="font-body-md text-body-md text-on-surface-variant pt-2">
+            Charred cedar (Shou Sugi Ban) interacting with quiet water surfaces. Conceived as a modern secular sanctuary honoring seasonal micro-shifts in mist and foliage.
+          </p>
+</div>
+<div class="pt-1">
+<span class="inline-flex items-center gap-2 font-label-md text-label-md uppercase tracking-widest text-primary group-hover:text-secondary transition-colors duration-200">
+            Inspect Documentation <span class="material-symbols-outlined text-[16px] transition-transform duration-300 ease-out group-hover:translate-x-1.5">arrow_forward</span>
+</span>
+</div>
+</div>
+<div class="md:col-span-6 space-y-6 group cursor-pointer md:mt-12 reveal-on-scroll delay-200" data-hover-label="View Project 03">
+<div class="relative overflow-hidden bg-surface-container-high h-[480px]">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105" data-alt="Alpine Monolith in Vals Switzerland. Heavy textured grey local quartzite masonry stacked horizontally, cantilevered glass volumes over deep snowy alpine valley slopes." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBYYeUey5qBZYY_DwVmi_wKAwrhUHfhfq3s1wGfdnBKLfS8w0JDLb-iqr7yYTrbCFE3pyKMo8uKdxIZyNeMuj4zfOQtf2kaOUCrcJ_UJJhGTRc5au_zMYx0TRe_iqGl4bav5-_WgZQBN-7rdQsubrekV23xp2PXbIcidKdvXsvjIqCrgFv-LJOsKPNL3QSANywpLVGIshL8LBkiD0w-CGqaxUehqaufA0LJOp0h6y1xsIKPLM1upXDAew')">
+</div>
+<div class="absolute top-4 right-4 bg-primary px-3 py-1 text-on-primary font-label-sm text-label-sm uppercase tracking-widest">
+            Alpine Residence
+          </div>
+</div>
+<div class="space-y-2">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.25em] text-secondary">Project 03 — 2024</span>
+<h3 class="font-headline-sm text-headline-sm text-primary tracking-tight group-hover:text-secondary transition-colors duration-300">
+            Alpine Monolith
+          </h3>
+<p class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Vals, Graubünden, Switzerland</p>
+<p class="font-body-md text-body-md text-on-surface-variant pt-2">
+            Local split quartzite walls anchoring an extreme cantilever into alpine granite bedrock. Thermal envelope engineering tuned to sub-zero high-elevation winters.
+          </p>
+</div>
+<div class="pt-1">
+<span class="inline-flex items-center gap-2 font-label-md text-label-md uppercase tracking-widest text-primary group-hover:text-secondary transition-colors duration-200">
+            Inspect Documentation <span class="material-symbols-outlined text-[16px] transition-transform duration-300 ease-out group-hover:translate-x-1.5">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-y-8 md:gap-x-gutter items-center group cursor-pointer reveal-on-scroll" data-hover-label="View Project 04">
+<div class="md:col-span-5 md:pr-6 space-y-5 order-2 md:order-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.25em] text-secondary">Project 04 — 2025</span>
+<span class="font-label-md text-label-md px-3 py-1 bg-surface-container-high text-primary uppercase transition-colors group-hover:bg-secondary-container">Institutional Museum</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary tracking-tight group-hover:text-secondary transition-colors duration-300">
+          Gallery O
+        </h3>
+<p class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Samcheong-dong, Seoul, Korea</p>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          An urban museum volume casting light down through a 24-meter central cylindrical skywell. Exposed washed aggregate concrete walls evoke geological strata within a dense metropolitan fabric.
+        </p>
+<div class="p-4 bg-surface-container-low space-y-2 transition-colors group-hover:bg-surface-container">
+<div class="flex items-center justify-between text-body-sm">
+<span class="font-label-sm text-label-sm uppercase text-secondary">Skywell Height</span>
+<span class="font-body-sm text-body-sm font-semibold text-primary">24.0 Meters</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="font-label-sm text-label-sm uppercase text-secondary">Acoustic Attenuation</span>
+<span class="font-body-sm text-body-sm font-semibold text-primary">NRC 0.92 Diffuse</span>
+</div>
+</div>
+<div class="pt-2">
+<span class="inline-flex items-center gap-2 font-label-md text-label-md uppercase tracking-widest text-primary group-hover:text-secondary transition-colors duration-200">
+            Read Curatorial Dossier <span class="material-symbols-outlined text-[16px] transition-transform duration-300 ease-out group-hover:translate-x-1.5">arrow_forward</span>
+</span>
+</div>
+</div>
+<div class="md:col-span-7 overflow-hidden bg-surface-container-high order-1 md:order-2">
+<div class="w-full h-[520px] bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105" data-alt="Gallery O in Seoul, majestic modern art museum interior showing a monumental circular exposed aggregate concrete atrium." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCGTKnK0lFeMb9_R04JH_Dt5zQbgs0qm0MhUbD_knb-90nOZZYebXbdPJvSZ4HuOp5JCzpKQ6-JxfapY-eLs-NeN85sQBHUgrCrOSBRJtO9qm8kbxtsZoho7lOxvGMS2yrm-xVj61bAl9ZnPKZqQi73asSKcyCFtsJXve724Lg2tbr_whFl8dwZa6ni_NyVPfjKewTigM_Z0XWUZ48vEhmdeq_OUMC-jd2EhOwnLQGv6qB5MMBKTj9XDA')">
+</div>
+</div>
+</div>
+</section>
+<section class="w-full bg-primary text-on-primary px-margin-mobile md:px-margin py-space-xl" id="disciplines-section">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-gutter mb-16">
+<div class="md:col-span-5 reveal-on-scroll">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.25em] text-secondary-fixed">03 / Method &amp; Scope</span>
+<h2 class="font-headline-lg text-headline-lg text-on-primary uppercase tracking-tight mt-3">Four Disciplines, One Practice</h2>
+</div>
+<div class="md:col-span-7 md:flex items-end reveal-on-scroll delay-100">
+<p class="font-body-lg text-body-lg text-primary-fixed max-w-xl">
+          I work as a single-track practice. Architecture, interior volume, custom millwork, and lighting physics are calibrated concurrently under strict material governance.
+        </p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="p-8 bg-tertiary-container hover:bg-surface-variant hover:text-on-surface transition-all duration-300 group discipline-card cursor-pointer reveal-on-scroll">
+<div class="flex items-center justify-between mb-8">
+<span class="font-display text-headline-sm text-secondary-fixed group-hover:text-secondary transition-colors">01</span>
+<span class="material-symbols-outlined text-primary-fixed group-hover:text-primary transition-transform duration-300 group-hover:scale-110">architecture</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm uppercase tracking-wide mb-3">Architecture &amp; Masterplanning</h3>
+<p class="font-body-sm text-body-sm text-primary-fixed group-hover:text-on-surface-variant leading-relaxed transition-colors">
+          Site interventions, monolithic concrete framing, seismic engineering, and long-horizon structures designed to patina gracefully over decades.
+        </p>
+</div>
+<div class="p-8 bg-tertiary-container hover:bg-surface-variant hover:text-on-surface transition-all duration-300 group discipline-card cursor-pointer reveal-on-scroll delay-100">
+<div class="flex items-center justify-between mb-8">
+<span class="font-display text-headline-sm text-secondary-fixed group-hover:text-secondary transition-colors">02</span>
+<span class="material-symbols-outlined text-primary-fixed group-hover:text-primary transition-transform duration-300 group-hover:scale-110">chair</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm uppercase tracking-wide mb-3">Interior &amp; Bespoke Millwork</h3>
+<p class="font-body-sm text-body-sm text-primary-fixed group-hover:text-on-surface-variant leading-relaxed transition-colors">
+          Seamless millwork carved from single solid logs, raw patinated bronze hardware, and monolithic stone vanities quarried per site.
+        </p>
+</div>
+<div class="p-8 bg-tertiary-container hover:bg-surface-variant hover:text-on-surface transition-all duration-300 group discipline-card cursor-pointer reveal-on-scroll delay-200">
+<div class="flex items-center justify-between mb-8">
+<span class="font-display text-headline-sm text-secondary-fixed group-hover:text-secondary transition-colors">03</span>
+<span class="material-symbols-outlined text-primary-fixed group-hover:text-primary transition-transform duration-300 group-hover:scale-110">wb_twilight</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm uppercase tracking-wide mb-3">Spatial Light &amp; Acoustics</h3>
+<p class="font-body-sm text-body-sm text-primary-fixed group-hover:text-on-surface-variant leading-relaxed transition-colors">
+          Shadow choreography modeling diurnal solar paths. Micro-perforated acoustic treatments hidden beneath lime plaster to create temple-like silence.
+        </p>
+</div>
+<div class="p-8 bg-tertiary-container hover:bg-surface-variant hover:text-on-surface transition-all duration-300 group discipline-card cursor-pointer reveal-on-scroll delay-300">
+<div class="flex items-center justify-between mb-8">
+<span class="font-display text-headline-sm text-secondary-fixed group-hover:text-secondary transition-colors">04</span>
+<span class="material-symbols-outlined text-primary-fixed group-hover:text-primary transition-transform duration-300 group-hover:scale-110">science</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm uppercase tracking-wide mb-3">Material Research</h3>
+<p class="font-body-sm text-body-sm text-primary-fixed group-hover:text-on-surface-variant leading-relaxed transition-colors">
+          Proprietary pozzolanic cement mixes incorporating recycled volcanic slag, natural lime washes, and organic weathering tests over multi-year cycles.
+        </p>
+</div>
+</div>
+</section>
+<section class="w-full px-margin-mobile md:px-margin py-space-xl" id="journal-section">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 reveal-on-scroll">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.25em] text-secondary">04 / Critical Notes</span>
+<h2 class="font-headline-lg text-headline-lg text-primary uppercase tracking-tight mt-2">Journal &amp; Notes</h2>
+</div>
+<a class="font-label-md text-label-md uppercase tracking-widest text-primary hover:text-secondary transition-colors mt-4 md:mt-0 inline-flex items-center gap-2 group/link" href="#">
+<span>Access All Essays</span> <span class="material-symbols-outlined text-[16px] transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5">arrow_outward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<article class="p-8 bg-surface-container-low group cursor-pointer transition-all duration-300 hover:shadow-lg reveal-on-scroll" data-hover-label="Read Essay">
+<div class="h-64 mb-8 overflow-hidden bg-surface-container-high">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Monochromatic macro photograph of light piercing through a narrow slit in a massive rough concrete wall." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAmJmhgOQvjJ7lvDRwc3ESJfRftzFhh8NMaTmtEa65h6oS-fEKy_fXLFJE0glMxASJ6akCIa7gaguPcYxlHmIB3_RVKbkMebk8kLdXBmGEe5TpawxI825o3TqXjCgO4fkIVntjTA_Wgieq-slZECoDxJzEJQx_5LKZhNRoviYuZW6nJ303-_z_mexa5BMD3OvlRJkL5U53NhRjmUvV9p_QPRPa_jEzjk2_mAv0FC3CBQul5jpIG-afhxw')">
+</div>
+</div>
+<div class="flex items-center gap-4 mb-4">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">Vol. II — Issue 04</span>
+<span class="text-outline-variant">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">12 min read</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary group-hover:text-secondary transition-colors mb-3">
+          The Weight of Light: Sculpting Void with Heavy Concrete
+        </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">
+          How extreme structural density creates the condition for luminosity to be experienced not merely as brightness, but as physical presence and emotional anchor.
+        </p>
+<span class="font-label-md text-label-md uppercase tracking-widest text-primary group-hover:text-secondary inline-flex items-center gap-2">
+          Read Full Essay <span class="material-symbols-outlined text-[16px] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">north_east</span>
+</span>
+</article>
+<article class="p-8 bg-surface-container-low group cursor-pointer transition-all duration-300 hover:shadow-lg reveal-on-scroll delay-200" data-hover-label="Read Essay">
+<div class="h-64 mb-8 overflow-hidden bg-surface-container-high">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Detailed close up of weathered granite block and patinated dark bronze corner joint." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQbm5rD7EcfBiGb30Xyh8ECMCgWJBiSbAN_ewv3y59nl9bcUQj0JK5cnFJGneH2VukcciU9Cu8GkCQoIMAJnoFSIqSrFyX6v3A34LatDj6HLF8Fkeml66olhm8Evb-CHx00Ex-wP-rYXVXdioXs9mGbEWdpfCiuGGxc588_5DSPrW8-emJVTRQsewAWBVfqZ7Paw5pdJdWDrpq7gGTs3wNMAk7Ze9Ya2RDbqk7iUBJT-4gJbn_4OvwnQ')">
+</div>
+</div>
+<div class="flex items-center gap-4 mb-4">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">Vol. II — Issue 02</span>
+<span class="text-outline-variant">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">8 min read</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary group-hover:text-secondary transition-colors mb-3">
+          Tactility of Stone: Materials in Dialogue with Centuries
+        </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">
+          An examination of non-synthetic substrates. Why modern construction must reject temporary finishes in favor of self-healing minerals that gain beauty through decay.
+        </p>
+<span class="font-label-md text-label-md uppercase tracking-widest text-primary group-hover:text-secondary inline-flex items-center gap-2">
+          Read Full Essay <span class="material-symbols-outlined text-[16px] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">north_east</span>
+</span>
+</article>
+</div>
+</section>
+<section class="w-full bg-surface-container px-margin-mobile md:px-margin py-space-xl" id="inquiry-section">
+<div class="max-w-4xl mx-auto text-center space-y-8 reveal-on-scroll">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.3em] text-secondary block">05 / Get in Touch</span>
+<h2 class="font-headline-lg text-headline-lg text-primary uppercase leading-tight tracking-tight">
+        Have an Ambitious Site in Mind?
+      </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+        I take on a limited number of bespoke commissions each year across private residential, cultural, and contemplative landscape projects.
+      </p>
+<div class="pt-6 flex flex-col sm:flex-row items-center justify-center gap-5">
+<a class="w-full sm:w-auto px-8 py-4 bg-primary text-on-primary font-label-md text-label-md uppercase tracking-widest hover:bg-secondary hover:text-on-secondary transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5" href="mailto:jjmttl45@gmail.com">
+          Initiate Conversation
+        </a>
+<a class="w-full sm:w-auto px-8 py-4 bg-transparent border border-primary text-primary font-label-md text-label-md uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5" href="#featured-works">
+          View Portfolio
+        </a>
+</div>
+<div class="pt-12 grid grid-cols-1 sm:grid-cols-2 gap-6 text-left max-w-2xl mx-auto">
+<div class="p-4 bg-surface-container-lowest transition-all duration-300 hover:-translate-y-0.5 hover:shadow-sm">
+<p class="font-label-sm text-label-sm uppercase tracking-widest text-secondary mb-1">Direct Inquiries</p>
+<p class="font-body-sm text-body-sm text-primary font-medium">jjmttl45@gmail.com</p>
+</div>
+<div class="p-4 bg-surface-container-lowest transition-all duration-300 hover:-translate-y-0.5 hover:shadow-sm">
+<p class="font-label-sm text-label-sm uppercase tracking-widest text-secondary mb-1">Location</p>
+<p class="font-body-sm text-body-sm text-primary font-medium">Seoul, South Korea</p>
+</div>
+</div>
+</div>
+</section>
+</div></main><footer class="w-full bg-surface-container-low border-t border-outline-variant/30"><div class="w-full px-margin-mobile md:px-margin py-space-lg"><div class="grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-gutter mb-space-lg"><div class="md:col-span-6"><p class="font-headline-sm text-headline-sm uppercase text-primary tracking-widest mb-3">Hyunwoo Jung</p><p class="font-body-sm text-body-sm text-on-surface-variant max-w-sm">Spatial design and material integrity, conceived for generational permanence.</p></div><div class="md:col-span-3"><p class="font-label-sm text-label-sm text-secondary uppercase tracking-[0.2em] mb-4">Studio</p><address class="not-italic font-body-sm text-body-sm text-on-surface-variant space-y-1"><p>Seoul, South Korea</p><p>jjmttl45@gmail.com</p></address></div><div class="md:col-span-3"><p class="font-label-sm text-label-sm text-secondary uppercase tracking-[0.2em] mb-4">Index</p><ul class="space-y-2"><li class="font-body-sm text-body-sm"><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Instagram</a></li><li class="font-body-sm text-body-sm"><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Behance</a></li><li class="font-body-sm text-body-sm"><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">LinkedIn</a></li><li class="font-body-sm text-body-sm"><a class="text-on-surface-variant hover:text-primary transition-colors" href="https://github.com/pzcm6435/practice" target="_blank" rel="noopener">GitHub</a></li></ul></div></div><div class="pt-8 border-t border-outline-variant/20 flex flex-col md:flex-row items-center justify-between gap-4"><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">© 2025 Hyunwoo Jung. All rights reserved.</p><div class="flex items-center gap-6"><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary uppercase tracking-widest transition-colors" href="#">Privacy Policy</a><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary uppercase tracking-widest transition-colors" href="#">Imprint</a></div></div></div></footer>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const revealElements = document.querySelectorAll('.reveal-on-scroll');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealElements.forEach(el => observer.observe(el));
+  } else {
+    revealElements.forEach(el => el.classList.add('is-revealed'));
+  }
+
+  const progressBar = document.getElementById('scroll-progress');
+  const header = document.getElementById('site-header');
+
+  const updateScroll = () => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = docHeight > 0 ? scrollTop / docHeight : 0;
+
+    if (progressBar) {
+      progressBar.style.transform = `scaleX(${Math.min(Math.max(scrollPercent, 0), 1)})`;
+    }
+
+    if (header) {
+      if (scrollTop > 40) {
+        header.classList.add('shadow-sm', 'bg-surface/95');
+      } else {
+        header.classList.remove('shadow-sm', 'bg-surface/95');
+      }
+    }
+  };
+
+  window.addEventListener('scroll', updateScroll, { passive: true });
+  updateScroll();
+
+  const metricCounters = document.querySelectorAll('.metric-counter');
+  let metricsAnimated = false;
+
+  const animateMetrics = () => {
+    metricCounters.forEach(counter => {
+      const target = parseFloat(counter.getAttribute('data-target'));
+      const suffix = counter.getAttribute('data-suffix') || '';
+      const decimals = parseInt(counter.getAttribute('data-decimals') || '0', 10);
+
+      if (isNaN(target)) return;
+
+      const duration = 1200;
+      const startTime = performance.now();
+
+      const updateVal = (now) => {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeVal = 1 - Math.pow(1 - progress, 4);
+        const current = target * easeVal;
+
+        counter.textContent = current.toFixed(decimals) + suffix;
+
+        if (progress < 1) {
+          requestAnimationFrame(updateVal);
+        } else {
+          counter.textContent = target.toFixed(decimals) + suffix;
+        }
+      };
+
+      requestAnimationFrame(updateVal);
+    });
+  };
+
+  if (metricCounters.length > 0 && 'IntersectionObserver' in window) {
+    const metricObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !metricsAnimated) {
+          metricsAnimated = true;
+          animateMetrics();
+          obs.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const metricParent = metricCounters[0].closest('section');
+    if (metricParent) metricObserver.observe(metricParent);
+  }
+
+  const cursorPill = document.getElementById('cursor-pill');
+  const cursorPillText = document.getElementById('cursor-pill-text');
+  const hoverTargets = document.querySelectorAll('[data-hover-label]');
+
+  if (cursorPill && window.matchMedia('(pointer: fine)').matches) {
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let pillX = mouseX;
+    let pillY = mouseY;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    }, { passive: true });
+
+    const renderCursor = () => {
+      pillX += (mouseX - pillX) * 0.18;
+      pillY += (mouseY - pillY) * 0.18;
+      cursorPill.style.left = `${pillX}px`;
+      cursorPill.style.top = `${pillY}px`;
+      requestAnimationFrame(renderCursor);
+    };
+    requestAnimationFrame(renderCursor);
+
+    hoverTargets.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        const label = card.getAttribute('data-hover-label') || 'View Project';
+        cursorPillText.innerHTML = `${label} <span class="material-symbols-outlined text-[14px]">arrow_outward</span>`;
+        cursorPill.classList.add('active');
+      });
+
+      card.addEventListener('mouseleave', () => {
+        cursorPill.classList.remove('active');
+      });
+    });
+  }
+});
+</script>
+</body></html>
